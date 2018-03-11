@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .demo {
+            width: 100px;
+            height: 100px;
+            /* transition: 1s; */
+            background-color: gray;
+            margin: 10px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="demo" @click="attachRed = !attachRed" :class="divClassess">
+            Red
+        </div>
+        <div class="demo" @click="attachGreen = !attachGreen" :class="divClassess">
+            Green
+        </div>
+        <div class="demo" @click="attachBlue = !attachBlue" :class="divClassess">
+            Blue
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                attachRed: false,
+                attachGreen: false,
+                attachBlue: false
+            },
+            computed: {
+                divClassess: function () {
+                    return {
+                        red: this.attachRed && !this.attachGreen && !this.attachBlue,
+                        blue: !this.attachRed && !this.attachGreen && this.attachBlue,
+                        green: !this.attachBlue && !this.attachRed && this.attachGreen
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
