@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app-one">
+        <h1>{{ title }}</h1>
+        <button @click="changeTitle">Change title on app two</button>
+    </div>
+    <hr>
+    <hr>
+    <div id="app-two">
+        <h1>{{ title }}</h1>
+        <button @click="changeTitle">Change title on app one</button>
+    </div>
+
+    <script>
+        var one = new Vue({
+            el: '#app-one',
+            data: {
+                title: 'App One'
+            },
+            methods: {
+                changeTitle: function () {
+                    two.title = 'Title Changed by App one'
+                }
+            }
+        })
+        var two = new Vue({
+            el: '#app-two',
+            data: {
+                title: 'App Two'
+            },
+            methods: {
+                changeTitle: function () {
+                    one.title = 'Title Changed by App Two'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
